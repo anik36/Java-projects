@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "caching.ttl.minute.expire",
+  "type": "java.lang.String",
+  "description": "A description for 'caching.ttl.minute.expire'"
+}]}

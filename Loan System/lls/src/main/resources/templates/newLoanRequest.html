@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>New Loan Request</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <style>
+        .center {
+            display: block;
+            margin: auto;
+            width: 60%;
+            padding: 10px
+        }
+        input:invalid{
+            border-color: red;
+        }
+    </style>
+<div class="container justify-content-center" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" th:href="@{/newloan}" >New Loan</a>
+              <a class="nav-link" th:href="@{/loanlist}">All Loans</a>
+              <a class="nav-link" th:href="@{/imporloantypes}">Import loan types</a>
+              <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+            </div>
+          </div>
+      </nav>
+
+</div>
+</head>
+
+<body>
+
+
+    <div class="container mt-5 mb-5 center">
+        <h1 class="text-center">Add New Loan Request</h1>
+        <form th:action="@{/newloan}" th:object="${loan}" method="post">
+            <div class="mb-3 center">
+                <label class="form-label">Enter your customer_id</label>
+                <input type="text" inputmode="numeric" pattern="[0-9]*" placeholder="eg. 1" class="form-control"
+                    title="Only numbers allowed" th:field="*{user_id}" required>
+            </div>
+
+            <div class="mb-3 center">
+                <label class="form-label">Enter loan_type_id</label>
+                <input type="text" inputmode="numeric" pattern="[1-9]*" placeholder="eg. 1" class="form-control"
+                    title="Only numbers allowed" th:field="*{loan_type_id}" required="">
+            </div>
+
+            <div class="mb-3 center">
+                <label class="form-label">Enter principle amount</label>
+                <input type="text" inputmode="numeric"  placeholder="eg. 10000" class="form-control"
+                    title="Only numbers allowed" th:field="*{principle}" required>
+            </div>
+
+            <div class="mb-3 center">
+                <label class="form-label">Enter % rate</label>
+                <input type="text" inputmode="numeric" pattern="^(0\.[1-9]|[1-9][0-9]{0,2}(\.[1-9])?)" placeholder="eg. 10" class="form-control"
+                    title="Only numbers allowed" th:field="*{rate}" required>
+            </div>
+
+            <div class="mb-3 center">
+                <label class="form-label">Enter loan tenure in months</label>
+                <input type="text" inputmode="numeric" placeholder="eg. 12" class="form-control"
+                    title="Only numbers allowed" th:field="*{time}" required>
+            </div>
+
+            <div class="mb-3 center">
+                <label class="form-label">Enter loan status</label>
+                <select class="form-select" th:field="*{status}" required>
+                    <option selected value="pending">pending</option>
+                    <option value="approved">approved</option>
+                    <option value="rejected">rejected</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary center" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
